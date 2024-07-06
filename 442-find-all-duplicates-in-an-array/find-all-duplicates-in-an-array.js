@@ -3,7 +3,7 @@
  * @return {number[]}
  */
 var findDuplicates = function(nums) {
-    let res = new Array();
+    let res = [];
     nums = nums.sort((a,b)=>a-b); // time complexity = O(nlogn);
     for(let i=0;i<nums.length;i++){    //O(n);
         if(nums[i-1]===nums[i]){
