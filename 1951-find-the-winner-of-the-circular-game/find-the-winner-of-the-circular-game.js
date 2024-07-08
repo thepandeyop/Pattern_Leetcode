@@ -5,16 +5,18 @@
  */
 // using simulation array 
 var findTheWinner = function(n, k) {
-    let arr = [];  // O(n) space;
-    for(let i=1;i<=n;i++){
-        arr.push(i);
+   // using queue
+    
+    let queue = [];    // space: O(n)
+    for(let i =1;i<=n;i++){
+        queue.push(i);
     }
-    let i=0;
-    while(arr.length>1){     // O(n) 
-        let idx = (i+k-1)%arr.length;
-        arr.splice(idx,1);     //O(n)
-        i = idx;
+    while(queue.length>1){  //  T.C:  O(n.k)
+        for(let i=1;i<k;i++){
+            let front =queue.shift();
+            queue.push(front);
+        }
+        queue.shift();
     }
-    // overal time complexity => O(n^2);
-    return arr[0];
+    return queue[0];
 };
