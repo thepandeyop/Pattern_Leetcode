@@ -2,21 +2,23 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-
-var permute = function(nums) {
-   let res=[];
-    backtrack(res,nums,0,nums.length);
-    return res;
-};
-
-function backtrack(res,nums,idx,n){
-    if(idx===n){
-        res.push([...nums]);
+function backtrack(nums, temp, res, used) {
+    if (temp.length === nums.length) {
+        res.push([...temp]);
         return;
     }
-    for(let i=idx;i<n;i++){
-        [nums[i],nums[idx]]=[nums[idx],nums[i]];
-        backtrack(res,nums,idx+1,n);
-          [nums[i],nums[idx]]=[nums[idx],nums[i]];
+    for (let i = 0; i < nums.length; i++) {
+        if (used[i]) continue;
+        used[i] = true;
+        temp.push(nums[i]);
+        backtrack(nums, temp, res, used);
+        temp.pop();
+        used[i] = false;
     }
 }
+
+var permute = function(nums) {
+    let res = [];
+    backtrack(nums, [], res, Array(nums.length).fill(false));
+    return res;
+};
