@@ -2,7 +2,7 @@
  * @param {number[]} cost
  * @return {number}
  */
-
+ //                             using dp bro :)
 function solve(i, cost, dp) {
     if (i >= cost.length) {
         return 0;
